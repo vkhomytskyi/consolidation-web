@@ -1,0 +1,46 @@
+<div *ngIf="!selectedDocument">
+  <h3>Search Result</h3>
+
+  <div class="row form-group align-middle" *ngIf="result.totalCount > 0">
+    <div class="col-sm-2">
+      Total: <span class="badge badge-primary">{{result.totalCount}}</span>
+    </div>
+    <div class="col-sm-2" *ngIf="result.scopusCount > 0">
+      Scopus: <span class="badge badge-primary">{{result.scopusCount}}</span>
+    </div>
+    <div class="col-sm-2" *ngIf="result.rinzCount > 0">
+      РИНЦ: <span class="badge badge-primary">{{result.rinzCount}}</span>
+    </div>
+    <div class="col-sm-2" *ngIf="result.kpiCount > 0">
+      КПИ: <span class="badge badge-primary">{{result.kpiCount}}</span>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Source</th>
+      <th scope="col">Date</th>
+      <th scope="col">Keywords</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let document of result.documents" (click)="selectDocument(document)">
+      <th scope="row">{{document.id}}</th>
+      <td>{{document.title}}</td>
+      <td>{{document.author}}</td>
+      <td>{{document.source}}</td>
+      <td>{{document.publicationDate | date:'dd/MM/yyyy'}}</td>
+      <td>{{document.keywords}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="selectedDocument">
+  <button type="button" class="btn btn-secondary mb-5" (click)="clearDocument()">< Back</button>
+  <app-document [document]="selectedDocument"></app-document>
+</div>

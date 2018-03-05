@@ -1,0 +1,92 @@
+<div class="loader" *ngIf="loading">Loading...</div>
+
+<div *ngIf="!submitted">
+  <h3>Search Request</h3>
+  <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title"
+             [(ngModel)]="titleTerms" name="title"
+             #text="ngModel" placeholder="Terms divided with spaces">
+    </div>
+
+    <div class="form-group">
+      <label for="text">Text</label>
+      <input type="text" class="form-control" id="text"
+             [(ngModel)]="textTerms" name="text"
+             #text="ngModel" placeholder="Terms divided with spaces">
+    </div>
+
+    <div class="form-group">
+      <label for="author">Author</label>
+      <input type="text" class="form-control" id="author"
+             [(ngModel)]="authorTerms" name="author"
+             #text="ngModel" placeholder="Terms divided with spaces">
+    </div>
+
+    <div class="form-group">
+      <label for="keyword">Keyword</label>
+      <input type="text" class="form-control" id="keyword"
+             [(ngModel)]="keywordTerms" name="keyword"
+             #text="ngModel" placeholder="Terms divided with spaces">
+    </div>
+
+    <div class="row form-group">
+      <div class="col">
+        <label for="fromDate">From Date</label>
+        <input type="date" class="form-control" id="fromDate"
+               [(ngModel)]="fromDate" name="fromDate"
+               #text="ngModel">
+      </div>
+      <div class="col">
+        <label for="tillDate">Till Date</label>
+        <input type="date" class="form-control" id="tillDate"
+               [(ngModel)]="tillDate" name="tillDate"
+               #text="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="limit">Limit</label>
+      <input type="number" class="form-control" id="limit"
+             [(ngModel)]="toId" name="limit"
+             #text="ngModel" placeholder="Limit for each source">
+    </div>
+
+    <!--<div class="form-group">-->
+      <!--<label for="fromDate">From Date</label>-->
+      <!--<input type="date" class="form-control" id="fromDate"-->
+             <!--[(ngModel)]="fromDate" name="fromDate"-->
+             <!--#text="ngModel">-->
+    <!--</div>-->
+
+    <!--<div class="form-group">-->
+      <!--<label for="tillDate">Till Date</label>-->
+      <!--<input type="date" class="form-control" id="tillDate"-->
+             <!--[(ngModel)]="tillDate" name="tillDate"-->
+             <!--#text="ngModel">-->
+    <!--</div>-->
+
+    <div class="form-group">
+      <label for="source">Source</label>
+      <select multiple class="form-control" id="source" size="3" [(ngModel)]="source" name="source">
+        <option>Scopus</option>
+        <option>РИНЦ</option>
+        <option>КПИ</option>
+      </select>
+    </div>
+
+    <div class="btn-group" role="group">
+      <button type="submit" class="btn btn-success" [disabled]="!searchForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-warning" (click)="clearForm()">Clear</button>
+    </div>
+    <!--<button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>-->
+  </form>
+</div>
+
+<div *ngIf="documents">
+  <button type="button" class="btn btn-secondary mb-5" (click)="clearSearch()" *ngIf="!selectedDocument">
+    < Back
+  </button>
+  <app-search-result [result]="result" (onSelected)="onDetails($event)"></app-search-result>
+</div>
