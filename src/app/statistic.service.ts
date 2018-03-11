@@ -5,20 +5,21 @@ import {Observable} from 'rxjs/Observable';
 
 import {DocumentRequest} from "./searchRequest";
 import {SearchResult} from "./searchResult";
+import {SearchStatistic} from "./searchStatistic";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable()
-export class SearchService {
+export class StatisticService {
 
-  private searchUrl = 'http://localhost:8080/search';
+  private statisticsUrl = 'http://localhost:8080/statistics';
 
   constructor(private http: HttpClient) {
   }
 
-  search(request: DocumentRequest): Observable<SearchResult> {
-    return this.http.post<SearchResult>(this.searchUrl, request, httpOptions);
+  statistics(): Observable<SearchStatistic> {
+    return this.http.get<SearchStatistic>(this.statisticsUrl, httpOptions);
   }
 }

@@ -4,6 +4,7 @@ import {DocumentRequest} from '../searchRequest';
 import {SearchService} from "../search.service";
 import {Document} from "../document";
 import {SearchResult} from "../searchResult";
+import {StatisticService} from "../statistic.service";
 
 @Component({
   selector: 'app-search-form',
@@ -12,7 +13,7 @@ import {SearchResult} from "../searchResult";
 })
 export class SearchFormComponent {
 
-  constructor(private searchService: SearchService) {
+  constructor(private searchService: SearchService, private statisticsService: StatisticService) {
   }
 
   documents: Document[];
@@ -26,7 +27,7 @@ export class SearchFormComponent {
   tillDate: string;
   source: string[];
   fromId: number;
-  toId: number;
+  limit: number;
 
   submitted = false;
   loading = false;
@@ -48,8 +49,8 @@ export class SearchFormComponent {
     if (this.tillDate)
       model.tillDate = new Date(this.tillDate).getTime();
     model.source = this.source;
-    if (this.toId)
-      model.toId = this.toId - 1;
+    if (this.limit)
+      model.limit = this.limit - 1;
 
     this.submitted = true;
     this.search(model);
@@ -82,6 +83,6 @@ export class SearchFormComponent {
     this.fromDate = null;
     this.tillDate = null;
     this.fromId = null;
-    this.toId = null;
+    this.limit = null;
   }
 }

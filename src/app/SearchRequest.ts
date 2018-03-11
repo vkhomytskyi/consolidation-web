@@ -6,6 +6,5 @@ export class DocumentRequest {
   fromDate: number;
   tillDate: number;
   source: string[];
-  fromId: number;
-  toId: number;
+  limit: number;
 }

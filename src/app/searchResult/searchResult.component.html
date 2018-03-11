@@ -1,9 +1,9 @@
 <div *ngIf="!selectedDocument">
-  <h3>Search Result</h3>
+  <h3>Результати пошуку</h3>
 
   <div class="row form-group align-middle" *ngIf="result.totalCount > 0">
     <div class="col-sm-2">
-      Total: <span class="badge badge-primary">{{result.totalCount}}</span>
+      Всього: <span class="badge badge-primary">{{result.totalCount}}</span>
     </div>
     <div class="col-sm-2" *ngIf="result.scopusCount > 0">
       Scopus: <span class="badge badge-primary">{{result.scopusCount}}</span>
@@ -20,11 +20,11 @@
     <thead class="thead-light">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Author</th>
-      <th scope="col">Source</th>
-      <th scope="col">Date</th>
-      <th scope="col">Keywords</th>
+      <th scope="col">Назва</th>
+      <th scope="col">Автор</th>
+      <th scope="col">Джерело</th>
+      <th scope="col">Дата</th>
+      <th scope="col">Ключові слова</th>
     </tr>
     </thead>
     <tbody>
@@ -41,6 +41,6 @@
 </div>
 
 <div *ngIf="selectedDocument">
-  <button type="button" class="btn btn-secondary mb-5" (click)="clearDocument()">< Back</button>
+  <button type="button" class="btn btn-secondary mb-3" (click)="clearDocument()">< Назад</button>
   <app-document [document]="selectedDocument"></app-document>
 </div>
