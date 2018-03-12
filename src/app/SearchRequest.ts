@@ -7,4 +7,5 @@ export class DocumentRequest {
   tillDate: number;
   source: string[];
   limit: number;
+  iterations: number;
 }

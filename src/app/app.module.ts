@@ -12,6 +12,7 @@ import {DocumentComponent} from "./document/document.component";
 import {SearchFormComponent} from "./searchForm/searchForm.component";
 import {DlDateTimePickerDateModule} from "angular-bootstrap-datetimepicker";
 import {StatisticService} from "./statistic.service";
+import {StatisticsComponent} from "./statistics/statistics.component";
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {StatisticService} from "./statistic.service";
     AppComponent,
     SearchResultComponent,
     DocumentComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    StatisticsComponent
   ],
   providers: [SearchService, StatisticService],
   bootstrap: [AppComponent]

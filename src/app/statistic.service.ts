@@ -19,7 +19,7 @@ export class StatisticService {
   constructor(private http: HttpClient) {
   }
 
-  statistics(): Observable<SearchStatistic> {
-    return this.http.get<SearchStatistic>(this.statisticsUrl, httpOptions);
+  statistics(request: DocumentRequest): Observable<SearchStatistic[]> {
+    return this.http.post<SearchStatistic[]>(this.statisticsUrl, request, httpOptions);
   }
 }

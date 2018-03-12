@@ -5,6 +5,7 @@ import {SearchService} from "../search.service";
 import {Document} from "../document";
 import {SearchResult} from "../searchResult";
 import {StatisticService} from "../statistic.service";
+import {SearchStatistic} from "../SearchStatistic";
 
 @Component({
   selector: 'app-search-form',
@@ -19,6 +20,8 @@ export class SearchFormComponent {
   documents: Document[];
   result: SearchResult;
 
+  statistics: SearchStatistic[];
+
   titleTerms: string;
   textTerms: string;
   keywordTerms: string;
@@ -28,13 +31,13 @@ export class SearchFormComponent {
   source: string[];
   fromId: number;
   limit: number;
+  iterations: number;
 
   submitted = false;
   loading = false;
   selectedDocument = false;
 
-  onSubmit() {
-    this.loading = true;
+  buildRequest(): DocumentRequest {
     let model = new DocumentRequest();
     if (this.titleTerms)
       model.titleTerms = this.titleTerms.split(/\s/);
@@ -50,8 +53,15 @@ export class SearchFormComponent {
       model.tillDate = new Date(this.tillDate).getTime();
     model.source = this.source;
     if (this.limit)
-      model.limit = this.limit - 1;
+      model.limit = this.limit;
+    if (this.iterations)
+      model.iterations = this.iterations;
+    return model;
+  }
 
+  onSubmit() {
+    this.loading = true;
+    let model = this.buildRequest();
     this.submitted = true;
     this.search(model);
   }
@@ -67,12 +77,28 @@ export class SearchFormComponent {
 
   clearSearch() {
     this.documents = null;
+    this.statistics = null;
     this.clearForm();
     this.submitted = false;
   }
 
   onDetails(event: boolean) {
     this.selectedDocument = event;
+  }
+
+  onStatistics() {
+    this.loading = true;
+    let model = this.buildRequest();
+    this.submitted = true;
+    this.getStatistics(model);
+  }
+
+  getStatistics(request: DocumentRequest) {
+    this.statisticsService.statistics(request)
+      .subscribe(result => {
+        this.loading = false;
+        this.statistics = result;
+      });
   }
 
   clearForm() {
@@ -84,5 +110,6 @@ export class SearchFormComponent {
     this.tillDate = null;
     this.fromId = null;
     this.limit = null;
+    this.iterations = null;
   }
 }

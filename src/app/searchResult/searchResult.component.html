@@ -3,16 +3,16 @@
 
   <div class="row form-group align-middle" *ngIf="result.totalCount > 0">
     <div class="col-sm-2">
-      Всього: <span class="badge badge-primary">{{result.totalCount}}</span>
+      Всього: <span class="badge badge-primary">{{result.totalCount}} / {{result.totalRequested}}</span>
     </div>
-    <div class="col-sm-2" *ngIf="result.scopusCount > 0">
-      Scopus: <span class="badge badge-primary">{{result.scopusCount}}</span>
+    <div class="col-sm-2" *ngIf="result.scopusRequested > 0">
+      Scopus: <span class="badge badge-primary">{{result.scopusCount}} / {{result.scopusRequested}}</span>
     </div>
-    <div class="col-sm-2" *ngIf="result.rinzCount > 0">
-      РИНЦ: <span class="badge badge-primary">{{result.rinzCount}}</span>
+    <div class="col-sm-2" *ngIf="result.rinzRequested > 0">
+      РИНЦ: <span class="badge badge-primary">{{result.rinzCount}} / {{result.rinzRequested}}</span>
     </div>
-    <div class="col-sm-2" *ngIf="result.kpiCount > 0">
-      КПИ: <span class="badge badge-primary">{{result.kpiCount}}</span>
+    <div class="col-sm-2" *ngIf="result.kpiRequested > 0">
+      КПИ: <span class="badge badge-primary">{{result.kpiCount}} / {{result.kpiRequested}}</span>
     </div>
   </div>
 
